@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-Month Calendar</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --surface: #ffffff;
+            --background: #F3F4F6;
+            --text: #1F2937;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .card {
+            background-color: var(--surface);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 0.5rem;
+            border: 1px solid #E5E7EB;
+        }
+        .card h2 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.5rem;
+        }
+        .card p {
+            color: #6B7280;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>12-Month Calendar with QR Codes</h1>
+    
+    <div class="grid">
+        <% months.forEach(function(month) { %>
+            <div class="card">
+                <h2><%= month.name %></h2>
+                <img src="<%= month.qrCodeUrl %>" alt="QR Code for <%= month.name %>">
+                <p>Scan to view content</p>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>
